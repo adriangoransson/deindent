@@ -1,0 +1,12 @@
+[package]
+name = "deindent"
+description = "A command line utility and Rust library to format overly-indented text."
+repository = "https://github.com/adriangoransson/deindent"
+version = "1.0.0"
+authors = ["Adrian Göransson"]
+license = "MIT"
+keywords = ["indent", "indentation", "formatter"]
+categories = ["command-line-utilities", "text-processing", "value-formatting"]
+edition = "2024"
+
+[dependencies]
