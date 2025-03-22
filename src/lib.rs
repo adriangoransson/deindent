@@ -75,11 +75,12 @@ impl Deindenter<'_> {
             .skip(first_line)
             .take(1 + last_line - first_line)
         {
-            let skip = line
-                .bytes()
-                .take(leading_whitespace)
-                .len()
-                .min(leading_whitespace);
+            let trim = line.bytes().take(leading_whitespace).len();
+            let skip = if trim < leading_whitespace {
+                0 // Whitespace-only line.
+            } else {
+                trim
+            };
 
             out.write_all(&line.as_bytes()[skip..])?;
         }
@@ -197,5 +198,27 @@ impl From<Deindenter<'_>> for IndentInfo {
 }"#;
 
         test(input, expected);
+    }
+
+    #[test]
+    fn multiple_paragraphs() {
+        let mut input = r#"  
+        this is p1
+
+        this is p2"#
+            .to_owned();
+
+        let mut expected = r#"this is p1
+
+this is p2"#
+            .to_owned();
+
+        test(&input, &expected);
+
+        // With trailing newline.
+        input.push('\n');
+        expected.push('\n');
+
+        test(&input, &expected);
     }
 }
