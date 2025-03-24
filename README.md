@@ -6,8 +6,10 @@ A command line utility and Rust library to format overly-indented text.
 
 ## Installation
 
-At the moment, a Rust (or more specifically Cargo) installation is needed. To
-install, run:
+Head on over to the
+[releases](https://github.com/adriangoransson/deindent/releases) and get a copy!
+
+Or install using Cargo:
 
 ```sh
 $ cargo install deindent
